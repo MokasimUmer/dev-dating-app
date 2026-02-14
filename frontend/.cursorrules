@@ -1,0 +1,31 @@
+# Flutter Clean Architecture Rules
+
+## Architecture Principles
+- Follow Clean Architecture with clear separation: Data → Domain → Presentation
+- Each feature should be self-contained in its own directory
+- Use BLoC pattern for state management
+- Implement dependency injection using GetIt
+
+## Code Organization
+- **Data Layer**: Repositories, data sources (Supabase), models
+- **Domain Layer**: Entities, use cases, repository interfaces
+- **Presentation Layer**: BLoC/Cubit, widgets, pages
+
+## BLoC Pattern Guidelines
+- One BLoC per feature/screen
+- Events should be immutable and describe user actions
+- States should be immutable and describe UI states
+- Use Equatable for events and states
+- Keep business logic in use cases, not in BLoCs
+
+## Naming Conventions
+- Events: `[Feature][Action]Event` (e.g., `LoginSubmittedEvent`)
+- States: `[Feature][Status]State` (e.g., `AuthLoadingState`, `AuthSuccessState`)
+- BLoCs: `[Feature]Bloc` (e.g., `AuthBloc`)
+- Use cases: `[Action][Feature]UseCase` (e.g., `LoginUserUseCase`)
+
+## Dependencies
+- Domain layer should have NO dependencies on other layers
+- Data layer depends on Domain layer
+- Presentation layer depends on Domain layer
+- Use dependency injection for all external dependencies
